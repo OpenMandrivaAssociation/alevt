@@ -14,7 +14,7 @@ Patch2:		alevt-1.6.1-koi8.patch
 Patch3:		alevt-1.6.1-xio.patch
 Patch4:		alevt-1.6.1-dvb.patch
 URL:		http://www.goron.de/~froese/
-BuildRequires:	XFree86-devel
+BuildRequires:	X11-devel
 BuildRequires:	libpng-devel >= 1.0.8
 BuildRequires:	zlib-devel
 BuildRoot:	%_tmppath/%name-%version-root-%(id -u -n)

@@ -17,7 +17,6 @@ URL:		http://www.goron.de/~froese/
 BuildRequires:	X11-devel
 BuildRequires:	libpng-devel >= 1.0.8
 BuildRequires:	zlib-devel
-BuildRoot:	%_tmppath/%name-%version-root-%(id -u -n)
 
 %description
 AleVT is a teletext/videotext decoder and browser for the bttv and DVB

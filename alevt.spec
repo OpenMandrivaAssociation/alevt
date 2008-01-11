@@ -45,13 +45,6 @@ install alevt alevt-date alevt-cap $RPM_BUILD_ROOT%_bindir
 install {alevt-cap.1,alevt-date.1,alevt.1x} $RPM_BUILD_ROOT%_mandir/man1
 
 # Mandriva menu entry
-mkdir -p $RPM_BUILD_ROOT/{%_liconsdir,%_miconsdir,%_menudir}
-cat << EOF >$RPM_BUILD_ROOT%_menudir/%name
-?package(%name): command="%name" icon="%name.png" \
-needs="x11" title="Alevt" \
-longtitle="Teletext/Videotext decoder and browser" section="Multimedia/Video" \
-xdg="true"
-EOF
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
@@ -86,7 +79,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGELOG COPYRIGHT README
 %attr(755,root,root) %_bindir/*
 %_mandir/man1/*
-%_menudir/%name
 %{_datadir}/applications/mandriva-%{name}.desktop
 %_iconsdir/%name.png
 %_liconsdir/%name.png

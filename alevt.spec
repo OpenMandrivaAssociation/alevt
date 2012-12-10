@@ -1,10 +1,10 @@
-Summary:	Teletext decoder and browser for bttv and DVB
+Summary:		Teletext decoder and browser for bttv and DVB
 Name:		alevt
-Version:	1.6.1
-Release:	%mkrel 11
-License:	GPL
+Version:		1.6.1
+Release:		11
+License:		GPL
 Group:		Video
-Source0:	http://www.goron.de/~froese/%name/%name-%version.tar.bz2
+Source0:		http://www.goron.de/~froese/%name/%name-%version.tar.bz2
 Source10:	alevt-big.png
 Source11:	alevt-mini.png
 Source12:	alevt.png
@@ -14,10 +14,10 @@ Patch2:		alevt-1.6.1-koi8.patch
 Patch3:		alevt-1.6.1-xio.patch
 Patch4:		alevt-1.6.1-dvb.patch
 URL:		http://www.goron.de/~froese/
-BuildRequires:	libx11-devel
-BuildRequires:	libpng-devel >= 1.0.8
-BuildRequires:	zlib-devel
-BuildRoot:	%_tmppath/%name-%version-root-%(id -u -n)
+BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(libpng) >= 1.0.8
+BuildRequires:	pkgconfig(zlib)
+
 
 %description
 AleVT is a teletext/videotext decoder and browser for the bttv and DVB
@@ -33,12 +33,12 @@ teletext and one to capture teletext pages from scripts.
 %patch3 -p0 -b .xio
 %patch4 -p1
 sed -i 's£-L/usr/X11R6/lib£-L/usr/X11R6/%{_lib}£' Makefile
+sed -i '7i#include <zlib.h>' exp-gfx.c
 
 %build
 make OPT="$RPM_OPT_FLAGS"
 
 %install
-rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%_bindir,%_mandir/man1,%_liconsdir,%_miconsdir}
 
 install alevt alevt-date alevt-cap $RPM_BUILD_ROOT%_bindir
@@ -62,11 +62,6 @@ install %SOURCE10 $RPM_BUILD_ROOT%_liconsdir/%name.png
 install %SOURCE11 $RPM_BUILD_ROOT%_miconsdir/%name.png
 install %SOURCE12 $RPM_BUILD_ROOT%_iconsdir/%name.png 
 
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-
 %if %mdkversion < 200900
 %post
 %update_menus
@@ -79,7 +74,6 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%defattr(644,root,root,755)
 %doc CHANGELOG COPYRIGHT README
 %attr(755,root,root) %_bindir/*
 %_mandir/man1/*
@@ -88,4 +82,49 @@ rm -rf $RPM_BUILD_ROOT
 %_liconsdir/%name.png
 %_miconsdir/%name.png
 
+
+
+
+%changelog
+* Sun Dec 05 2010 Oden Eriksson <oeriksson@mandriva.com> 1.6.1-11mdv2011.0
++ Revision: 609964
+- rebuild
+
+* Fri Feb 19 2010 Funda Wang <fwang@mandriva.org> 1.6.1-10mdv2010.1
++ Revision: 508054
+- fix BR
+- rediff dvb patch
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+    - rebuild
+    - drop old menu
+
+  + Pixel <pixel@mandriva.com>
+    - rpm filetriggers deprecates update_menus/update_scrollkeeper/update_mime_database/update_icon_cache/update_desktop_database/post_install_gconf_schemas
+
+* Thu Dec 20 2007 Olivier Blin <oblin@mandriva.com> 1.6.1-7mdv2008.1
++ Revision: 135819
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+    - buildrequires X11-devel instead of XFree86-devel
+    - s/Mandrake/Mandriva/
+
+
+* Fri Dec 22 2006 Anssi Hannula <anssi@mandriva.org> 1.6.1-7mdv2007.0
++ Revision: 101532
+- patch4: add dvb support
+- Import alevt
+
+* Tue Sep 19 2006 Nicolas Lécureuil <neoclust@mandriva.org> 1.6.1-6mdv2007.0
+- XDG
+
+* Thu Jun 29 2006 Lenny Cartier <lenny@mandriva.com> 1.6.1-5mdv2007.0
+- rebuild
+
+* Mon Jul 25 2005 Pascal Terjan <pterjan@mandriva.org> 1.6.1-4mdk
+- Fix build (P3)
+- Fix lib64
 

@@ -1,27 +1,29 @@
---- ./alevt-cap.c.tv	2002-08-20 05:17:29.000000000 +0200
-+++ ./alevt-cap.c	2002-10-29 10:54:21.000000000 +0100
-@@ -2,6 +2,7 @@
- #include <stdlib.h>
+diff -up alevt-v1.8.0/alevt-cap.c.2~ alevt-v1.8.0/alevt-cap.c
+--- alevt-v1.8.0/alevt-cap.c.2~	2021-01-01 05:04:13.335917889 +0100
++++ alevt-v1.8.0/alevt-cap.c	2021-01-01 05:04:57.348451442 +0100
+@@ -4,6 +4,7 @@
  #include <signal.h>
  #include <unistd.h>
+ #include <locale.h>
 +#include <sys/stat.h>
  
  #include "vt.h"
  #include "misc.h"
-@@ -204,6 +205,10 @@
-     struct req *req;
-     struct dl_head reqs[2];	// simple linear lists of requests & captures
+@@ -219,6 +220,10 @@ main(int argc, char **argv)
+     char *progname = NULL;
+     int txtpid = -1;
  
 +    struct stat statbuf;
 +    if (stat(vbi_name, &statbuf) == -1)
-+      vbi_name = "/dev/v4l/vbi0";
++        vbi_name = "/dev/v4l/vbi0";
 +
      setprgname(argv[0]);
  
      fdset_init(fds);
---- ./alevt-date.c.tv	2002-10-29 10:54:09.000000000 +0100
-+++ ./alevt-date.c	2002-10-29 10:54:09.000000000 +0100
-@@ -2,6 +2,7 @@
+diff -up alevt-v1.8.0/alevt-date.c.2~ alevt-v1.8.0/alevt-date.c
+--- alevt-v1.8.0/alevt-date.c.2~	2021-01-01 05:04:13.334917877 +0100
++++ alevt-v1.8.0/alevt-date.c	2021-01-01 05:05:30.836857418 +0100
+@@ -3,6 +3,7 @@
  #include <sys/time.h>
  #include <time.h>	/* to keep glibc 2.2 quiet */
  #include <stdlib.h>
@@ -29,27 +31,29 @@
  #include <unistd.h>
  #include <signal.h>
  #include <time.h>
-@@ -173,6 +174,10 @@
-     int opt, ind;
-     char *arg;
+@@ -178,6 +179,10 @@ main(int argc, char **argv)
+     char *progname = NULL;
+     int txtpid = -1;
  
 +    struct stat statbuf;
 +    if (stat(vbi_name, &statbuf) == -1)
-+      vbi_name = "/dev/v4l/vbi0";
++        vbi_name = "/dev/v4l/vbi0";
 +
      setprgname(argv[0]);
  
      ind = 1;
---- ./main.c.tv	2002-08-20 05:07:04.000000000 +0200
-+++ ./main.c	2002-10-29 10:54:09.000000000 +0100
-@@ -1,5 +1,6 @@
- #include <stdio.h>
+diff -up alevt-v1.8.0/main.c.2~ alevt-v1.8.0/main.c
+--- alevt-v1.8.0/main.c.2~	2019-04-02 22:12:06.000000000 +0200
++++ alevt-v1.8.0/main.c	2021-01-01 05:05:51.994113907 +0100
+@@ -2,6 +2,7 @@
  #include <stdlib.h>
+ #include <string.h>
+ #include <locale.h>
 +#include <sys/stat.h>
  
  #include "vt.h"
  #include "misc.h"
-@@ -162,6 +163,10 @@
+@@ -199,6 +200,10 @@ main(int argc, char **argv)
      int opt, ind;
      char *arg;
  

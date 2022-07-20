@@ -1,6 +1,6 @@
 Summary:	Teletext decoder and browser for bttv and DVB
 Name:		alevt
-Version:	1.8.0
+Version:	1.8.1
 Release:	1
 License:	GPL
 Group:		Video

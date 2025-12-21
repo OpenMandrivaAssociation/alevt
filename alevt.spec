@@ -11,6 +11,7 @@ Source12:	alevt.png
 Patch0:		%name-1.6.0-time.h.patch
 Patch1:		alevt-1.6.1-vbi-fix.patch
 URL:		https://gitlab.com/alevt/alevt
+BuildRequires:	make
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(libpng) >= 1.0.8
 BuildRequires:	pkgconfig(zlib)

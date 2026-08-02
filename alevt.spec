@@ -1,6 +1,6 @@
 Summary:	Teletext decoder and browser for bttv and DVB
 Name:		alevt
-Version:	1.8.1
+Version:	1.8.3
 Release:	1
 License:	GPL
 Group:		Video
@@ -24,7 +24,7 @@ teletext and one to capture teletext pages from scripts.
 
 %prep
 %autosetup -p1 -n %{name}-v%{version}
-sed -i 's£-L/usr/X11R6/lib£-L/usr/X11R6/%{_lib}£' Makefile
+sed -i 's|-L/usr/X11R6/lib|-L/usr/X11R6/%{_lib}|' Makefile
 sed -i '7i#include <zlib.h>' exp-gfx.c
 
 %build
